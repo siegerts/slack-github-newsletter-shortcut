@@ -16,6 +16,9 @@ app = App(process_before_response=True)
 GITHUB_API_KEY = os.getenv("GITHUB_API_KEY")
 gh = GitHubAPI(token=GITHUB_API_KEY)
 
+NEWSLETTER_OWNER = os.getenv("NEWSLETTER_OWNER")
+NEWSLETTER_REPO = os.getenv("NEWSLETTER_REPO")
+
 # def next_issue_date():
 #     today = date.today()
 #     if today.weekday() == 3:
@@ -447,8 +450,8 @@ def handle_view_submission(ack, body, client, view, logger):
 
     # update draft
     # find or create draft
-    owner = "siegerts"
-    repo = "fullstackdigest"
+    owner = NEWSLETTER_OWNER
+    repo = NEWSLETTER_REPO
 
     # TODO: break this out
     issue_number = find_or_create_digest_issue(owner, repo, newsletter_schema)
